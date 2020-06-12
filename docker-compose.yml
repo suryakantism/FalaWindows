@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  utilityserver:
+    build: "./RLMS-Utility"
+    image: "rlmsbot:utility"
+    expose:
+      - "5000"
+
+  admin_rasa_bot:
+    build:
+      context: "./RLMS-Bot/"
+      dockerfile: AdminBotDockerfile
+    image: "rlmsbot:admin"
+    ports:
+      - "8081:5005"
+      
+  customer_rasa_bot:
+    build:
+      context: "./RLMS-Bot/"
+      dockerfile: CustomerBotDockerfile
+    image: "rlmsbot:customer"
+    ports:
+      - "8082:5005"
+      
+  visitor_rasa_bot:
+    build:
+      context: "./RLMS-Bot/"
+      dockerfile: VisitorBotDockerfile
+    image: "rlmsbot:visitor"
+    ports:
+      - "8083:5005"
+
+
+  rasa_actions:
+    build:
+      context: "./RLMS-Bot/"
+      dockerfile: ActionsDockerfile 
+    image: "rlmsbot:actions"
+    expose:
+      - "5055"
