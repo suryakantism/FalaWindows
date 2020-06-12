@@ -1,0 +1,20 @@
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM rasa/rasa-sdk:latest
+USER root
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED 1
+
+EXPOSE 5055
+
+# Install other requirements
+RUN pip install --upgrade pip
+RUN pip install requests
+
+# copy files
+COPY ./actions.py /app
+COPY ./docker/config.py /app
+
+ENTRYPOINT python -m rasa_sdk --actions actions

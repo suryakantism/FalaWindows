@@ -1,0 +1,68 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+  
+intents:
+- greet 
+- intent_user_liked
+- intent_user_disliked
+- faq_ari
+- faq_ccpa
+- faq_escrow
+- faq_gi
+- faq_heloc
+- faq_ii
+- faq_pdp
+- faq_pi
+- faq_pt
+- faq_rlt
+- faq_sm
+- canned_generic_MDA_breakup
+- canned_pmt_change_dd
+- canned_generic_due_date
+- canned_generic_FICO
+- canned_pmt_other_fees
+- canned_pmt_late_fee
+- canned_pmt_nsf
+- canned_generic_outst_balance
+- canned_pmt_breakdown
+- canned_escrow_disbursal
+- canned_pmt_change_reason
+- covid_support
+- new_customer
+- new_heloc_customer
+
+
+responses:
+  utter_greet_with_buttons:
+    - text: "Hey! I'm Fala. Let me know if you need any help! Here's some suggestions."
+      buttons: 
+      - title: COVID-19 Assistance
+        payload: /covid_support
+      - title: I'm a new Customer
+        payload: /new_customer
+      - title: I'm a new HELoC Customer
+        payload: /new_heloc_customer
+
+  utter_new_customer:
+  - text: "Welcome to Rushmore! Whether your mortgage is a standard home loan or a home equity line-of-credit, we’re happy to have you as a new customer and want to help make this transition as easy as possible. We know you have questions, and we’re here to guide you through the process.\nYou can find more information here - https://www.rushmorelm.com/loan-transfer-faq/" 
+  
+  utter_new_heloc_customer:
+  - text: "Welcome to Rushmore! We’re happy to have you as a new customer and want to help make this transition as easy as possible.\nWe know you have questions, and we’re here to guide you through the process. You can find more information here - https://www.rushmorelm.com/new-home-equity-line-of-credit-customers/"
+
+  utter_covid_support:
+  - text: "Our thoughts are with those affected by the COVID-19 pandemic and we are responding proactively to help you. We know that you may have questions about your mortgage. We want to help you understand the options available to you and will keep you updated as conditions continue to change and new information is available. To help provide peace of mind during these unprecedented times, Rushmore is taking numerous steps.\n\nWe are suppressing all negative credit reporting for the months of March, April and May. If your loan is current, we will continue to report your positive credit status. No late fees will be assessed for any of our customers impacted by COVID-19.\n\nYou can find more information on getting assistance at https://www.rushmorelm.com/covid-19-assistance-information/." 
+  
+  utter_ask_login:
+  - text: I can definitely help you with that, but I'll need you to login first!
+
+  utter_apologize:
+  - text: Aw man, sorry I couldn't help! Please contact us at 888-504-6700, Monday – Friday 8:00AM – 6:00PM CST or drop an email at help@rushmorelm.com and we'll be glad to help you! 
+
+  utter_happy:
+  - text: Awesome, really glad I could help!
+
+actions:
+- action_default_fallback
+- action_trigger_faq
+- action_get_canned_dynamic_response
